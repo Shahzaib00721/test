@@ -1,6 +1,11 @@
 // components/StepsSection.tsx
-'use client';
-import { ClipboardEdit, PenTool, Layers, CheckCircle } from 'lucide-react';
+import { ClipboardEdit } from "lucide-react";
+import { PenTool } from "lucide-react";
+import { Layers } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import React from "react";
+import { useState } from "react";
+
 
 const steps = [
   {
