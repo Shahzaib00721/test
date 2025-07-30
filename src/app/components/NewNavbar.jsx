@@ -6,6 +6,7 @@ import { CheckCircle } from "lucide-react";
 import React from "react";
 import { useState } from "react";
 
+console.log("Navbar component loaded");
 
 const steps = [
   {
