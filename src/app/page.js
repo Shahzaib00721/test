@@ -3,10 +3,11 @@ import React from "react";
 import { useState } from "react";
 
 
-import NewNavbar from "../components/NewNavbar";
-import NewDababar from "../components/NewDababar";
-import NewContect from "../components/NewContect";
-import NewData from "../components/NewData";
+import NewNavbar from "./components/NewNavbar";
+import NewDababar from "./components/NewDababar";
+import NewContect from "./components/NewContect";
+import NewData from "./components/NewData";
+
 
 import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 
@@ -90,6 +91,7 @@ export default function Home() {
         <NewDababar />
         <NewContect />
         <NewData />
+        
       </div>
     </main>
   );
