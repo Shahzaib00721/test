@@ -36,6 +36,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-l from-white to-white-100 px-4 py-10">
+
+
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-3xl md:text-4xl font-bold leading-snug">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
@@ -44,7 +46,10 @@ export default function Home() {
           Get Started
         </button>
 
-        <section className="mt-16 text-left">
+
+        
+
+        <section  className="mt-16 text-left">
           <h2 className="text-2xl font-bold text-center mb-8">FAQs</h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (

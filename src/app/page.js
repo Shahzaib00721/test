@@ -1,29 +1,44 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import NewNavbar from "./components/NewNavbar";
 import NewDababar from "./components/NewDababar";
 import NewContect from "./components/NewContect";
 import NewData from "./components/NewData";
 
-
 import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // section refs
+  const processRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const faqsRef = useRef(null);
+
+  const scrollTo = (ref) => {
+    setIsMenuOpen(false); // close mobile menu on click
+    ref?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <main className="bg-white text-black flex flex-col items-center">
       {/* Navbar */}
       <nav className="w-full py-6 flex max-768 justify-center items-start gap-10 text-sm font-medium text-gray-700 m-5">
         <span className="font-bold text-black text-lg">AVARON</span>
+
         <div className="hidden md:flex gap-6">
-          <a href="#" className="hover:text-black">Process</a>
-          <a href="#" className="hover:text-black">About Us</a>
-          <a href="#" className="hover:text-black">Projects</a>
-          <a href="#" className="hover:text-black">FAQs</a>
+          <button onClick={() => scrollTo(processRef)} className="hover:text-black">Process</button>
+          <button onClick={() => scrollTo(aboutRef)} className="hover:text-black">About Us</button>
+          <button onClick={() => scrollTo(projectsRef)} className="hover:text-black">Projects</button>
+          <button onClick={() => scrollTo(faqsRef)} className="hover:text-black">FAQs</button>
         </div>
 
         <button className="ml-4 bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded text-xs hidden md:block">
@@ -36,19 +51,8 @@ export default function Home() {
           </button>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden w-full flex flex-col font-medium items-start pl-20 gap-10 py-10 bg-gray-100 border-b">
-          <a href="#" className="hover:text-black">Process</a>
-          <a href="#" className="hover:text-black">About Us</a>
-          <a href="#" className="hover:text-black">Projects</a>
-          <a href="#" className="hover:text-black">FAQs</a>
-          <button className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded text-xs">Get Started</button>
-        </div>
-      )}
-
-      {/* Hero Section */}
+    
+      {/* Hero */}
       <section className="text-center px-4 mt-10">
         <h1 className="text-4xl md:text-5xl font-light leading-tight">
           Experience Modern <br />
@@ -59,40 +63,71 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
-          <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded">
-            Lorem ipsum
-          </button>
-          <button className="bg-white hover:bg-gray-100 text-gray-700 px-6 py-2 rounded shadow">
-            Lorem ipsum
-          </button>
+          <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded">Lorem ipsum</button>
+          <button className="bg-white hover:bg-gray-100 text-gray-700 px-6 py-2 rounded shadow">Lorem ipsum</button>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="text-center mt-20 px-4">
+
+
+{/* Projects Section */}
+      <section ref={projectsRef} className="scroll-mt-24 text-center mt-20 px-4 w-full max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-10">Our Latest Projects</h2>
 
-        <div className="flex flex-wrap justify-center gap-6 px-4 py-2">
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="w-40 sm:w-44 md:w-48 h-56 bg-gray-800 rounded-xl transform rotate-[5deg] hover:rotate-0 transition-transform duration-300"
-            ></div>
-          ))}
+        <div className="relative w-full">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            className="px-4 py-6 swiper-custom"
+          >
+            {[...Array(8)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <div className="w-full h-56 bg-gray-800 rounded-xl"></div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <style jsx global>{`
+            .swiper-custom .swiper-pagination {
+              position: static !important;
+              margin-top: 20px;
+              text-align: center;
+            }
+          `}</style>
         </div>
 
         <p className="mt-10 text-lg">Our Work Process:</p>
         <h3 className="text-2xl font-bold">Crafting Architectural Excellence</h3>
       </section>
 
-      {/* Additional Components */}
-      <div className="w-full mt-20">
+
+
+
+
+      {/* Process Section */}
+      <section ref={processRef} className="scroll-mt-24 w-full mt-20">
         <NewNavbar />
+      </section>
+
+      {/* About Section */}
+      <section ref={aboutRef} className="scroll-mt-24 w-full mt-20">
         <NewDababar />
+      </section>
+
+      
+
+      {/* FAQs Section */}
+      <section ref={faqsRef} className="scroll-mt-24 w-full mt-20">
         <NewContect />
         <NewData />
-        
-      </div>
+      </section>
     </main>
   );
 }

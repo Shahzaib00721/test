@@ -1,14 +1,34 @@
 
    
-   
+  
    export default function AvaronSection() {
+ 
+      
+      
+    
   return (
+    
+   
+  
+      
     <div className="min-h-screen bg-white text-center px-4 py-12 space-y-12">
+      <div className="hidden md:flex gap-6">
+
+          
+          
+        </div>
+       {/* About (anchor) */}
+      <section  className="scroll-mt-24 w-full max-w-6xl px-4 mt-20">
+       
+        
+      
       <div>
         <h2 className="text-2xl md:text-3xl font-bold">But why should it be us<br />building your Avaron</h2>
         <p className="text-gray-500 mt-2">Lorem ipsum dolor sit amet</p>
       </div>
 
+      
+        
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div>
           <h3 className="text-xl font-semibold mb-4">Other</h3>
@@ -59,8 +79,14 @@
             Submit Your Request
           </button>
         </form>
+        
       </div>
+         </section>
     </div>
+    
+   
   );
+  
+
 }
 
