@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef, useState } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -17,23 +16,23 @@ import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // section refs
   const processRef = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const faqsRef = useRef(null);
 
   const scrollTo = (ref) => {
-    setIsMenuOpen(false); // close mobile menu on click
+    setIsMenuOpen(false); // Close mobile menu on click
     ref?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <main className="bg-white text-black flex flex-col items-center">
+    <main className="bg-white text-black flex flex-col items-center relative">
       {/* Navbar */}
-      <nav className="w-full py-6 flex max-768 justify-center items-start gap-10 text-sm font-medium text-gray-700 m-5">
+      <nav className="w-full py-6 flex max-768 justify-center items-start gap-10 text-sm font-medium text-gray-700 m-5 relative z-50">
         <span className="font-bold text-black text-lg">AVARON</span>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex gap-6">
           <button onClick={() => scrollTo(processRef)} className="hover:text-black">Process</button>
           <button onClick={() => scrollTo(aboutRef)} className="hover:text-black">About Us</button>
@@ -45,14 +44,40 @@ export default function Home() {
           Get Started
         </button>
 
-        <div className="md:hidden absolute right-4 top-6">
+        {/* Mobile Hamburger */}
+        <div className="md:hidden absolute right-4 top-6 z-50">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <AiOutlineClose size={28} /> : <AiOutlineMenuUnfold size={28} />}
           </button>
         </div>
       </nav>
-    
-      {/* Hero */}
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden fixed inset-0 bg-transpirnt bg-opacity-50 z-40 transition-opacity duration-300 ${
+          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <div
+          className={`fixed top-0 right-0 w-full h-130 bg-white shadow-lg flex flex-col items-start justify-center font-medium p-20 space-y-12 transform transition-transform duration-300 ${
+            isMenuOpen ? "translate-x-0" : "translate-x-0"
+          }`}
+          
+          onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside menu
+        >
+          <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(processRef)}>Process</button>
+          <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(aboutRef)}>About Us</button>
+          <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(projectsRef)}>Projects</button>
+          <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(faqsRef)}>FAQs</button>
+            
+        </div>
+         <button className="ml-4 bg-orange-400 hover:bg-orange-500 text-red px-4 py-2 rounded text-xs hidden md:block">
+          Get Started
+        </button>
+      </div>
+
+      {/* Hero Section */}
       <section className="text-center px-4 mt-10">
         <h1 className="text-4xl md:text-5xl font-light leading-tight">
           Experience Modern <br />
@@ -61,19 +86,15 @@ export default function Home() {
         <p className="text-gray-600 mt-4 max-w-xl mx-auto">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
         </p>
-
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
           <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded">Lorem ipsum</button>
           <button className="bg-white hover:bg-gray-100 text-gray-700 px-6 py-2 rounded shadow">Lorem ipsum</button>
         </div>
       </section>
 
-
-
-{/* Projects Section */}
+      {/* Projects Section */}
       <section ref={projectsRef} className="scroll-mt-24 text-center mt-20 px-4 w-full max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-10">Our Latest Projects</h2>
-
         <div className="relative w-full">
           <Swiper
             modules={[Navigation, Pagination]}
@@ -107,23 +128,15 @@ export default function Home() {
         <h3 className="text-2xl font-bold">Crafting Architectural Excellence</h3>
       </section>
 
-
-
-
-
-      {/* Process Section */}
+      {/* Other Sections */}
       <section ref={processRef} className="scroll-mt-24 w-full mt-20">
         <NewNavbar />
       </section>
 
-      {/* About Section */}
       <section ref={aboutRef} className="scroll-mt-24 w-full mt-20">
         <NewDababar />
       </section>
 
-      
-
-      {/* FAQs Section */}
       <section ref={faqsRef} className="scroll-mt-24 w-full mt-20">
         <NewContect />
         <NewData />
