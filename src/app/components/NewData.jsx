@@ -11,14 +11,14 @@
    
   
       
-    <div className="min-h-screen bg-white text-center px-4 py-12 space-y-12">
+    <div className="min-h-screen bg-white text-center px-4 py-12 space-y-16">
       <div className="hidden md:flex gap-6">
 
           
           
         </div>
        {/* About (anchor) */}
-      <section  className="scroll-mt-24 w-full max-w-6xl px-4 mt-20">
+     
        
         
       
@@ -81,7 +81,7 @@
         </form>
         
       </div>
-         </section>
+       
     </div>
     
    

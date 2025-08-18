@@ -33,7 +33,7 @@ export default function Home() {
         <span className="font-bold text-black text-lg">AVARON</span>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6">
+        <div className="hidden md:flex gap-5 items-center">
           <button onClick={() => scrollTo(processRef)} className="hover:text-black">Process</button>
           <button onClick={() => scrollTo(aboutRef)} className="hover:text-black">About Us</button>
           <button onClick={() => scrollTo(projectsRef)} className="hover:text-black">Projects</button>
@@ -60,7 +60,7 @@ export default function Home() {
         onClick={() => setIsMenuOpen(false)}
       >
         <div
-          className={`fixed top-0 right-0 w-full h-130 bg-white shadow-lg flex flex-col items-start justify-center font-medium p-20 space-y-12 transform transition-transform duration-300 ${
+          className={`fixed top-0 right-0 w-full h-120 bg-white shadow-lg flex flex-col items-start justify-center font-medium p-20 space-y-12 transform transition-transform duration-300 ${
             isMenuOpen ? "translate-x-0" : "translate-x-0"
           }`}
           
@@ -71,10 +71,12 @@ export default function Home() {
           <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(projectsRef)}>Projects</button>
           <button className="flex items-center gap-2 text-xl" onClick={() => scrollTo(faqsRef)}>FAQs</button>
             
-        </div>
-         <button className="ml-4 bg-orange-400 hover:bg-orange-500 text-red px-4 py-2 rounded text-xs hidden md:block">
+        <button className="ml-4 bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded text-xs  md:block">
           Get Started
         </button>
+        </div>
+        
+
       </div>
 
       {/* Hero Section */}
@@ -91,7 +93,25 @@ export default function Home() {
           <button className="bg-white hover:bg-gray-100 text-gray-700 px-6 py-2 rounded shadow">Lorem ipsum</button>
         </div>
       </section>
+       
 
+ <div className="flex flex-col items-center pt-10 ">
+      {/* Center text */}
+     
+      {/* Brand names horizontally aligned */}
+      <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-16">
+        {["AVARON", "AVARON", "AVARON", "AVARON", "AVARON","AVARON","AVARON","AVARON"].map((brand, i) => (
+          <span
+            key={i}
+            className="font-bold text-lg sm:text-xl md:text-2xl text-black"
+          >
+            {brand}
+          </span>
+        ))}
+      </div>
+    </div>
+
+       
       {/* Projects Section */}
       <section ref={projectsRef} className="scroll-mt-24 text-center mt-20 px-4 w-full max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-10">Our Latest Projects</h2>
